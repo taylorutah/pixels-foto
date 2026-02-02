@@ -27,8 +27,6 @@ export const SITE_CONFIG = {
 
 export const NAV_LINKS = [
   { href: "/services", label: "Services" },
-  { href: "/gallery", label: "Gallery" },
-  { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
 ] as const;
 
