@@ -1,3 +1,14 @@
+export interface RentalItem {
+  name: string;
+  pricePerDay: number;
+  discontinued?: boolean;
+}
+
+export interface RentalCategory {
+  category: string;
+  items: RentalItem[];
+}
+
 export interface ServiceDetail {
   id: string;
   title: string;
@@ -17,6 +28,7 @@ export interface ServiceDetail {
   }[];
   startingPrice?: string;
   turnaround?: string;
+  rentalEquipment?: RentalCategory[];
 }
 
 export const serviceDetails: Record<string, ServiceDetail> = {
@@ -434,20 +446,20 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     image: "/images/services/camera-rentals.jpg",
     imageAlt: "Professional camera equipment available for rent",
     longDescription:
-      "Need professional equipment for a special event or project? Rent high-end cameras, lenses, and accessories from our selection of well-maintained gear. We offer competitive rates and flexible rental periods.",
+      "Improve your session with top tier gear! Our rental services provide a flexible and affordable way for individuals and businesses to access a wide range of photography equipment without the need for significant upfront investment.",
     features: [
-      "DSLR and mirrorless cameras",
-      "Professional lenses",
-      "Lighting equipment",
-      "Tripods and stabilizers",
-      "Daily and weekly rates",
-      "Equipment tutorials available",
+      "Canon, Sony, Nikon & Tamron lenses",
+      "Professional camera bodies",
+      "Studio lighting equipment",
+      "Tripods and support gear",
+      "Daily rental rates",
+      "Same day pickup available",
     ],
     process: [
       {
         step: 1,
-        title: "Browse & Reserve",
-        description: "Check availability and reserve your equipment.",
+        title: "Call to Reserve",
+        description: "Call us at 801-233-9090 to check availability and reserve your equipment.",
       },
       {
         step: 2,
@@ -467,14 +479,14 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     ],
     faqs: [
       {
-        question: "What equipment do you rent?",
+        question: "How do I reserve equipment?",
         answer:
-          "We rent Canon and Sony cameras, various lenses, Profoto lighting, and accessories.",
+          "Please call us at 801-233-9090 to reserve an item or if you have any questions.",
       },
       {
         question: "Is a deposit required?",
         answer:
-          "Yes, we require a credit card hold or deposit for all rentals.",
+          "Yes, a credit card authorization is required for first time rentals.",
       },
       {
         question: "What if equipment is damaged?",
@@ -482,8 +494,77 @@ export const serviceDetails: Record<string, ServiceDetail> = {
           "Optional damage waiver available. Normal wear is expected; major damage may incur fees.",
       },
     ],
-    startingPrice: "$35/day",
+    startingPrice: "$10/day",
     turnaround: "Same day pickup",
+    rentalEquipment: [
+      {
+        category: "Tamron Lenses",
+        items: [
+          { name: "15-30mm f/2.8 (Canon Mount)", pricePerDay: 30 },
+          { name: "24-70mm f/2.8 (Canon Mount)", pricePerDay: 30, discontinued: true },
+          { name: "70-200mm f/2.8 (Canon Mount)", pricePerDay: 30 },
+          { name: "150-600mm f/5-6.3 (Canon Mount)", pricePerDay: 35 },
+        ],
+      },
+      {
+        category: "Sony Lenses",
+        items: [
+          { name: "FE 24-70mm f/2.8 GM", pricePerDay: 35, discontinued: true },
+          { name: "FE 70-200mm f/2.8 GM", pricePerDay: 35 },
+          { name: "FE 100-400mm f/4.5-5.6 GM OSS", pricePerDay: 35 },
+        ],
+      },
+      {
+        category: "Canon Lenses",
+        items: [
+          { name: "Canon 24-70mm f/2.8L", pricePerDay: 30 },
+          { name: "Canon 50mm f/1.2L", pricePerDay: 30 },
+          { name: "Canon 85mm f/1.2L", pricePerDay: 30 },
+          { name: "Canon 200-400mm f/4L IS USM", pricePerDay: 80 },
+        ],
+      },
+      {
+        category: "Nikon Lenses",
+        items: [
+          { name: "Nikkor 16-35mm f/4G", pricePerDay: 30 },
+          { name: "Nikkor 24-70mm f/2.8G", pricePerDay: 35, discontinued: true },
+          { name: "Nikkor 105mm micro f/2.8G VR", pricePerDay: 30 },
+          { name: "Nikkor 70-200mm f/2.8G VR II", pricePerDay: 35 },
+          { name: "Nikkor 50mm f/1.8G", pricePerDay: 30 },
+          { name: "Nikkor 85mm f/1.8G", pricePerDay: 30 },
+        ],
+      },
+      {
+        category: "Cameras",
+        items: [
+          { name: "Canon 1Dx Mark II (body)", pricePerDay: 125 },
+          { name: "Canon 5DS R (body)", pricePerDay: 85 },
+          { name: "Sony a7R II (body)", pricePerDay: 65 },
+          { name: "Sony a7R IV (body)", pricePerDay: 85, discontinued: true },
+        ],
+      },
+      {
+        category: "Accessories",
+        items: [
+          { name: "Canon Speedlite 600 EX RT", pricePerDay: 20 },
+          { name: "Nikon SB-910 AF Speedlight", pricePerDay: 20 },
+          { name: "Pocket Wizard Plus II (set of 3)", pricePerDay: 10 },
+          { name: "Carbon Fiber Tripod with head", pricePerDay: 20 },
+          { name: "Monopod", pricePerDay: 10 },
+          { name: "Gary Fong Diffuser", pricePerDay: 10 },
+          { name: "Westcott Rapid Box", pricePerDay: 20 },
+          { name: "Photo Printer DNP DS620A", pricePerDay: 140 },
+        ],
+      },
+      {
+        category: "Studio Lighting",
+        items: [
+          { name: "Elinchrom Kit (2 soft boxes, wireless trigger)", pricePerDay: 65 },
+          { name: "Muslin Backdrop (Various Color Choices)", pricePerDay: 15 },
+          { name: "Backdrop stand", pricePerDay: 15 },
+        ],
+      },
+    ],
   },
   "video-transfer": {
     id: "video-transfer",

@@ -159,6 +159,66 @@ export default async function ServicePage({ params }: ServicePageProps) {
         </div>
       </section>
 
+      {/* Rental Equipment List */}
+      {service.rentalEquipment && (
+        <section className="bg-gray-50 py-16 dark:bg-gray-800/50">
+          <div className="mx-auto max-w-7xl px-4">
+            <h2 className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
+              Equipment &amp; Pricing
+            </h2>
+            <p className="mb-8 text-gray-600 dark:text-gray-400">
+              All prices are per day. Call <a href={`tel:${SITE_CONFIG.phone}`} className="text-primary-600 hover:underline">{SITE_CONFIG.phoneFormatted}</a> to check availability and reserve.
+            </p>
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {service.rentalEquipment.map((category, index) => (
+                <Card key={index} variant="default" className="overflow-hidden">
+                  <div className="bg-primary-600 px-4 py-3 dark:bg-primary-700">
+                    <h3 className="font-semibold text-white">{category.category}</h3>
+                  </div>
+                  <CardContent className="p-0">
+                    <table className="w-full">
+                      <thead>
+                        <tr className="border-b border-gray-200 dark:border-gray-700">
+                          <th className="px-4 py-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">Item</th>
+                          <th className="px-4 py-2 text-right text-sm font-medium text-gray-600 dark:text-gray-400">Price/Day</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {category.items.map((item, itemIndex) => (
+                          <tr
+                            key={itemIndex}
+                            className={`border-b border-gray-100 last:border-0 dark:border-gray-700/50 ${
+                              item.discontinued ? "opacity-50" : ""
+                            }`}
+                          >
+                            <td className="px-4 py-2 text-sm text-gray-700 dark:text-gray-300">
+                              {item.name}
+                              {item.discontinued && (
+                                <span className="ml-2 text-xs text-red-500 line-through">Unavailable</span>
+                              )}
+                            </td>
+                            <td className="px-4 py-2 text-right text-sm font-medium text-gray-900 dark:text-white">
+                              {item.discontinued ? (
+                                <span className="line-through">${item.pricePerDay}</span>
+                              ) : (
+                                `$${item.pricePerDay}`
+                              )}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+            <p className="mt-8 text-center text-sm text-gray-500 dark:text-gray-400">
+              A credit card authorization is required for first time rentals. Prices subject to change.
+            </p>
+          </div>
+        </section>
+      )}
+
       {/* Process */}
       <section className="bg-gray-50 py-16 dark:bg-gray-800">
         <div className="mx-auto max-w-7xl px-4">
